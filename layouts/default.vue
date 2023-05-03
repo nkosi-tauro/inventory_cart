@@ -5,12 +5,14 @@
         <h1>Adventure Store</h1>
       </NuxtLink>
       <NuxtLink to="/cart">
-        <h1>Cart</h1>
+        <span class="material-icons-outlined">
+          shopping_bag
+        </span>
       </NuxtLink>
     </header>
 
     <div>
-      <slot/>
+      <slot />
     </div>
   </div>
 </template>
@@ -19,6 +21,4 @@
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
