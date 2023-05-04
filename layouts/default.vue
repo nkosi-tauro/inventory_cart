@@ -8,6 +8,7 @@
         <span class="material-icons-outlined text-secondary text-5xl">
           shopping_bag
         </span>
+        <span class="bg-white py-1 px-2 rounded-2xl font-bold badge">{{ cart.length }}</span>
       </NuxtLink>
     </header>
 
@@ -19,6 +20,14 @@
 
 <script setup>
 
+const cart = useCart()
+console.log(cart.value)
+
 </script>
 
-<style scoped></style>
+<style scoped>
+.badge {
+  position: relative;
+  left: -15px;
+}
+</style>

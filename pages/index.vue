@@ -3,7 +3,7 @@
     <h2 class="text-white text-2xl text-center my-8">All Products</h2>
 
     <div class="grid grid-cols-2 gap-7">
-      <div v-for="product in products.data">
+      <div v-for="product in products.data" :key="product.id">
         <ProductCard :product="product" />
       </div>
     </div>
