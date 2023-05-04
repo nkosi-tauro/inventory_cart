@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-
+import { useCartStore } from '@/stores/cartStore';
 const { product } = defineProps({
   product: {
     type: Object,
@@ -22,24 +22,18 @@ const { product } = defineProps({
   }
 })
 
-const cart = useCart()
+const cartStore = useCartStore()
 
 function isInCart(){
-  return !!cart.value.find(cart => cart.title === product.title)
+  return !!cartStore.cart.find(cartStore => cartStore.title === product.title)
 }
 
 function addToCart() { 
   if(!isInCart()) {
-    cart.value.push({ 
-      id: product.id,
-      title: product.title,
-      price: product.price,
-      img: product.img,
-      description: product.description
-    })
+    cartStore.addToCart(product)
   }
   else{
-    cart.value = [...cart.value.filter(cart => cart.title !== product.title)]
+    cartStore.cart = [...cartStore.cart.filter(cartStore => cartStore.title !== product.title)]
   }
 }
 
