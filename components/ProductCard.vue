@@ -5,7 +5,10 @@
       <p class="text-2xl text-secondary">{{ product.title }}</p>
       <p class="text-xl text-gray-50">{{ product.description }}</p>
       <p class="text-lg text-secondary my-3">{{ product.price }} Sliver Coins</p>
-      <button class="btn"><span>Add to Basket</span></button>
+      <button class="btn" @click="addToCart()">
+        <span v-if="isInCart()">Remove from Cart</span>
+        <span v-else>Add to Basket</span>
+      </button>
     </div>
   </div>
 </template>
@@ -18,6 +21,27 @@ const { product } = defineProps({
     required: true
   }
 })
+
+const cart = useCart()
+
+function isInCart(){
+  return !!cart.value.find(cart => cart.title === product.title)
+}
+
+function addToCart() { 
+  if(!isInCart()) {
+    cart.value.push({ 
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      img: product.img,
+      description: product.description
+    })
+  }
+  else{
+    cart.value = [...cart.value.filter(cart => cart.title !== product.title)]
+  }
+}
 
 </script>
 
